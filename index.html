@@ -1,606 +1,1735 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>pres_smd</title>
-<style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-</style>
-
-
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<html lang="de"><head>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.56">
+
+  <meta name="author" content="Nader Hotait">
+  <title>pres_smd – Social Media Data in R?</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="logo.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
   }
-}</script>
 
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
 
-<link rel="stylesheet" href="styles.css">
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+  <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+  <script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
+  <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+  <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+  <link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+  <script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+  <link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+  <script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+  <style>
+    .custom-small table {
+      font-size: .5em
+    }
+  </style>
 </head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
 
-<body class="nav-fixed">
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Social Media Data in R?</h1>
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">pres_smd</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Nader Hotait 
+</div>
+</div>
+</div>
+
+  <p class="date">2. August 2024</p>
+</section>
+<section id="inhalt" class="title-slide slide level2 center">
+<h2>Inhalt</h2>
+<ul>
+<li>Wie kommen wir an Daten?</li>
+<li>Welche Daten kriegen wir?</li>
+<li>Was können wir mit den Daten so machen?</li>
 </ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<div class="fragment">
+<p>Fokus auf TikTok!</p>
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
-<!-- main -->
-<main class="content" id="quarto-document-content">
+</section>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">pres_smd</h1>
+<section id="wie-kommen-wir-an-daten" class="title-slide slide level2 center">
+<h2>Wie kommen wir an Daten?</h2>
+
+<img data-src="helper_figs/computer.jpeg" class="r-stretch"></section>
+
+<section id="datenzugänge" class="title-slide slide level2 center">
+<h2>Datenzugänge</h2>
+<div class="custom-small">
+<table class="caption-top">
+<caption>Quellen und ihre Zugänglichkeit</caption>
+<colgroup>
+<col style="width: 23%">
+<col style="width: 14%">
+<col style="width: 32%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Website</th>
+<th>Code</th>
+<th>Datenbank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Zugriff</td>
+<td>Manuell</td>
+<td>Automatisiert (Webscraping)</td>
+<td>Automatisiert (Abfrage)</td>
+</tr>
+<tr class="even">
+<td>Verfügbare Daten</td>
+<td>Ausreichend</td>
+<td>Ausreichend</td>
+<td>Erweitert</td>
+</tr>
+<tr class="odd">
+<td>Datenqualität</td>
+<td>Hoch</td>
+<td>Mittel bis Hoch</td>
+<td>Hoch</td>
+</tr>
+<tr class="even">
+<td>Schwierigkeit</td>
+<td>Einfach</td>
+<td>Medium</td>
+<td>Einfach bis Schwer</td>
+</tr>
+<tr class="odd">
+<td>Datenvolumen</td>
+<td>Niedrig</td>
+<td>Groß</td>
+<td>Groß</td>
+</tr>
+<tr class="even">
+<td>Nutzbar für euch?</td>
+<td>Ja</td>
+<td>Ja</td>
+<td>Nein</td>
+</tr>
+</tbody>
+</table>
 </div>
+<div class="fragment">
+<p>Ausnahme: Nutzungsdaten!</p>
+</div>
+</section>
 
+<section id="welche-informationen-auf-sozialen-medien" class="title-slide slide level2 smaller center">
+<h2>Welche Informationen auf Sozialen Medien?</h2>
+<div>
+<ul>
+<li class="fragment">URLs</li>
+<li class="fragment">Handles</li>
+<li class="fragment">Likes</li>
+<li class="fragment">Views</li>
+<li class="fragment">Comments</li>
+<li class="fragment">Shares</li>
+<li class="fragment">Duration</li>
+<li class="fragment">Description, Hashtags, Tags</li>
+<li class="fragment">Sound</li>
+<li class="fragment">Date</li>
+</ul>
+</div>
+</section>
 
+<section id="welche-informationen-auf-sozialen-medien-1" class="title-slide slide level2 smaller center">
+<h2>Welche Informationen auf Sozialen Medien?</h2>
+<ul>
+<li>URLs: Quelle, Referenzierbarkeit</li>
+<li>Handles: Adressat, Referenzierbarkeit</li>
+<li>Likes: Popularität</li>
+<li>Views: Popularität, Sichtbarkeit</li>
+<li>Comments: Interaktionen, Popularität</li>
+<li>Shares: Popularität, Weitergabe</li>
+<li>Duration: Inhalt-Dauer Zusammenhang</li>
+<li>Description, Hashtags, Tags: Inhalt, Beschreibung, Diskurse, Netzwerke</li>
+<li>Sound: Diskurse, Künstlerische Untermauerung</li>
+<li>Date: Zeitlicher Kontext</li>
+</ul>
+</section>
 
-<div class="quarto-title-meta">
+<section id="beispiel-donald-trump-on-tiktok" class="title-slide slide level2 center">
+<h2><a href="https://www.tiktok.com/@realdonaldtrump"><span>Beispiel: Donald Trump on TikTok</span></a></h2>
 
-    
-  
-    
-  </div>
-  
+</section>
 
+<section id="wie-kriegen-wir-die-daten-jetzt" class="title-slide slide level2 center">
+<h2>Wie kriegen wir die Daten jetzt?</h2>
+<div>
+<ul>
+<li class="fragment">Entwicklung von Webscraper über R oder Python mit Selenium
+<ul>
+<li class="fragment">Zeitaufwending</li>
+<li class="fragment">Wenig Referenzprojekte vorhadnen</li>
+</ul></li>
+<li class="fragment">Webscraping mit Dienstleister
+<ul>
+<li class="fragment">Weniger Flexibilität</li>
+<li class="fragment">Meist Kosten</li>
+<li class="fragment">Aber: Einfacher für euch!</li>
+</ul></li>
+</ul>
+</div>
+</section>
 
-</header>
+<section id="webscraping-mit-dienstleister" class="title-slide slide level2 center">
+<h2><a href="https://www.octoparse.com"><span>Webscraping mit Dienstleister</span></a></h2>
 
+</section>
 
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<section id="unser-datensatz" class="title-slide slide level2 center">
+<h2>Unser Datensatz</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-4"><a></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-5"><a></a>trump_posts <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"trump_posts.xlsx"</span>)</span>
+<span id="cb1-6"><a></a>trump_page <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"trump_page.xlsx"</span>)</span>
+<span id="cb1-7"><a></a></span>
+<span id="cb1-8"><a></a>trump_df <span class="ot">&lt;-</span> trump_posts <span class="sc">%&gt;%</span></span>
+<span id="cb1-9"><a></a>  <span class="fu">left_join</span>(trump_page, <span class="at">by =</span> <span class="st">"Page_URL"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section id="unser-datensatz-1" class="title-slide slide level2 center">
+<h2>Unser Datensatz</h2>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code># A tibble: 6 × 4
+  Page_URL                                   post_likes post_comments post_saved
+  &lt;chr&gt;                                      &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt;     
+1 https://www.tiktok.com/@realdonaldtrump/v… 392.2K     10.2K         21.4K     
+2 https://www.tiktok.com/@realdonaldtrump/v… 616.7K     12.7K         34.7K     
+3 https://www.tiktok.com/@realdonaldtrump/v… 1.5M       29.3K         104.2K    
+4 https://www.tiktok.com/@realdonaldtrump/v… 694K       14.4K         48.3K     
+5 https://www.tiktok.com/@realdonaldtrump/v… 7.9M       126.6K        598.8K    
+6 https://www.tiktok.com/@realdonaldtrump/v… 5.2M       66.9K         334.2K    </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  views description.y tags  links account_follows account_follower account_likes
+  &lt;chr&gt; &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;        
+1 6M    100 days lef… @Jak… &lt;NA&gt;  2               9.4M             25.7M        
+2 6.5M  with          #sti… @Tea… 2               9.4M             25.7M        
+3 14M   KAMALA, YOU’… &lt;NA&gt;  &lt;NA&gt;  2               9.4M             25.7M        
+4 74.8M We love you … &lt;NA&gt;  Supp… 2               9.4M             25.7M        
+5 80.2M No Tax on Ti… &lt;NA&gt;  &lt;NA&gt;  2               9.4M             25.7M        
+6 157M  Face off with @Log… drop… 2               9.4M             25.7M        </code></pre>
 </div>
 </div>
+</section>
 
+<section id="nutzungsdaten-auf-tiktok" class="title-slide slide level2 center">
+<h2><a href="https://support.tiktok.com/de/account-and-privacy/personalized-ads-and-data/requesting-your-data"><span>Nutzungsdaten auf TikTok</span></a></h2>
 
+</section>
 
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+<section id="verarbeitung-von-nutzungsdaten" class="title-slide slide level2 center">
+<h2>Verarbeitung von Nutzungsdaten</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb4-2"><a></a><span class="fu">library</span>(purrr)</span>
+<span id="cb4-3"><a></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb4-4"><a></a>user_data <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"user_data.json"</span>)</span>
+<span id="cb4-5"><a></a></span>
+<span id="cb4-6"><a></a><span class="fu">glimpse</span>(user_data)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 9
+ $ Activity       :List of 14
+  ..$ Favorite Effects      : Named list()
+  ..$ Favorite Hashtags     :List of 1
+  .. ..$ FavoriteHashtagList: NULL
+  ..$ Favorite Sounds       :List of 1
+  .. ..$ FavoriteSoundList: NULL
+  ..$ Favorite Videos       :List of 1
+  .. ..$ FavoriteVideoList: NULL
+  ..$ Follower List         :List of 1
+  .. ..$ FansList:'data.frame': 2 obs. of  2 variables:
+  ..$ Following List        :List of 1
+  .. ..$ Following:'data.frame':    10 obs. of  2 variables:
+  ..$ Hashtag               : Named list()
+  ..$ Like List             :List of 1
+  .. ..$ ItemFavoriteList:'data.frame': 304 obs. of  2 variables:
+  ..$ Login History         :List of 1
+  .. ..$ LoginHistoryList:'data.frame': 58 obs. of  6 variables:
+  ..$ Purchase History      : Named list()
+  ..$ Search History        :List of 1
+  .. ..$ SearchList:'data.frame':   13 obs. of  2 variables:
+  ..$ Share History         :List of 1
+  .. ..$ ShareHistoryList:'data.frame': 2 obs. of  4 variables:
+  ..$ Status                :List of 1
+  .. ..$ Status List:'data.frame':  1 obs. of  7 variables:
+  ..$ Video Browsing History:List of 1
+  .. ..$ VideoList:'data.frame':    1161 obs. of  2 variables:
+ $ Ads and data   :List of 3
+  ..$ Ad Interests                                 :List of 1
+  .. ..$ AdInterestCategories: chr ""
+  ..$ Ads Based On Data Received From Partners     :List of 2
+  .. ..$ DataPartnerList: chr ""
+  .. ..$ AdvertiserList : chr ""
+  ..$ Usage Data From Third-Party Apps And Websites: Named list()
+ $ App Settings   :List of 2
+  ..$ Block   : Named list()
+  ..$ Settings:List of 1
+  .. ..$ SettingsMap:List of 16
+ $ Comment        :List of 1
+  ..$ Comments: Named list()
+ $ Direct Messages:List of 1
+  ..$ Chat History:List of 1
+  .. ..$ ChatHistory: Named list()
+ $ Profile        :List of 1
+  ..$ Profile Information:List of 1
+  .. ..$ ProfileMap:List of 9
+ $ Tiktok Live    :List of 4
+  ..$ Go Live History    : Named list()
+  ..$ Go Live Settings   :List of 1
+  .. ..$ SettingsMap:List of 11
+  ..$ Watch Live History : Named list()
+  ..$ Watch Live Settings:List of 3
+  .. ..$ WatchLiveSettingsMap           :List of 2
+  .. ..$ MostRecentModificationTimeInApp: chr "1660529019690"
+  .. ..$ MostRecentModificationTimeInWeb: chr "0"
+ $ Tiktok Shopping:List of 11
+  ..$ Communication History      : Named list()
+  ..$ Current Payment Information:List of 1
+  .. ..$ PayCard: NULL
+  ..$ Customer Support History   : Named list()
+  ..$ Order Dispute History      : Named list()
+  ..$ Order History              : Named list()
+  ..$ Product Browsing History   : Named list()
+  ..$ Product Review History     : Named list()
+  ..$ Return and Refund History  : Named list()
+  ..$ Saved Address Information  :List of 1
+  .. ..$ SavedAddress: NULL
+  ..$ Shopping Cart List         :List of 1
+  .. ..$ ShoppingCart: NULL
+  ..$ Vouchers                   :List of 1
+  .. ..$ Vouchers: NULL
+ $ Video          :List of 1
+  ..$ Videos: Named list()</code></pre>
+</div>
+</div>
+</section>
+
+<section id="verarbeitung-von-nutzungsdaten-1" class="title-slide slide level2 center">
+<h2>Verarbeitung von Nutzungsdaten</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>video_list <span class="ot">&lt;-</span> user_data[[<span class="st">"Activity"</span>]][[<span class="st">"Video Browsing History"</span>]][[<span class="st">"VideoList"</span>]]</span>
+<span id="cb6-2"><a></a>video_list<span class="sc">$</span>Date <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(video_list<span class="sc">$</span>Date)</span>
+<span id="cb6-3"><a></a></span>
+<span id="cb6-4"><a></a><span class="fu">head</span>(video_list)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 Date                                                VideoLink
+1 2022-08-16 12:53:30 https://www.tiktokv.com/share/video/7128382140387036421/
+2 2022-08-16 12:53:30 https://www.tiktokv.com/share/video/7131424863759158533/
+3 2022-08-16 12:53:18 https://www.tiktokv.com/share/video/7125796582599052549/
+4 2022-08-16 12:53:03 https://www.tiktokv.com/share/video/7109848649676410117/
+5 2022-08-16 12:52:57 https://www.tiktokv.com/share/video/7132098866878500101/
+6 2022-08-16 12:52:46 https://www.tiktokv.com/share/video/7131125515900947718/</code></pre>
+</div>
+</div>
+</section>
+
+<section id="was-kann-ich-mit-den-daten-so-machen" class="title-slide slide level2 smaller center">
+<h2>Was kann ich mit den Daten so machen?</h2>
+<ul>
+<li>Quantitative Analyse:
+<ul>
+<li>Deskriptive Statistik (Uni- und Multivariat)</li>
+<li>Harmonisierung mit externen Datenquellen</li>
+<li>Quantitative Textanalyse (Natural Language Processing)</li>
+<li>Machinelles Lernen, Big Data Analysen usw.</li>
+</ul></li>
+<li>Qualitative Analyse
+<ul>
+<li>Transkription Audio-Visueller Inhalte</li>
+<li>Kodierung und Interpretation der Inhalte</li>
+</ul></li>
+<li>Mixed-Methods
+<ul>
+<li>Quantifizierung von Kodierungen</li>
+<li>Gegenüberstellung verschiedener Daten (Kodierungen, Likes, Views, usw.)</li>
+</ul></li>
+</ul>
+</section>
+
+<section id="beispiel-1-muztok" class="title-slide slide level2 center">
+<h2>Beispiel 1 (MuzTok)</h2>
+<table class="caption-top">
+<caption>German Muslim Influencers (2022)</caption>
+<colgroup>
+<col style="width: 15%">
+<col style="width: 16%">
+<col style="width: 14%">
+<col style="width: 18%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Gender</th>
+<th>Accounts</th>
+<th>Videos</th>
+<th>Avg.Videos</th>
+<th>Avg.Views</th>
+<th>Avg.Likes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>All</td>
+<td>43</td>
+<td>2983</td>
+<td>69</td>
+<td>11.3M</td>
+<td>962.9K</td>
+</tr>
+<tr class="even">
+<td>couple</td>
+<td>2</td>
+<td>131</td>
+<td>66</td>
+<td>107.5M</td>
+<td>6.7M</td>
+</tr>
+<tr class="odd">
+<td>female</td>
+<td>6</td>
+<td>406</td>
+<td>68</td>
+<td>7.3M</td>
+<td>645.6K</td>
+</tr>
+<tr class="even">
+<td>male</td>
+<td>33</td>
+<td>2345</td>
+<td>71</td>
+<td>6.6M</td>
+<td>677.1K</td>
+</tr>
+<tr class="odd">
+<td>unknown</td>
+<td>2</td>
+<td>101</td>
+<td>50</td>
+<td>5.4M</td>
+<td>907.9K</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section id="deskriptive-statistik-i" class="title-slide slide level2 center">
+<h2>Deskriptive Statistik I</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>muztok_df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"muztok_df.xlsx"</span>)</span>
+<span id="cb8-2"><a></a></span>
+<span id="cb8-3"><a></a>p_1 <span class="ot">&lt;-</span> muztok_df <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-5"><a></a>    <span class="at">point_color =</span> <span class="fu">ifelse</span>(duration_sec <span class="sc">&lt;</span> <span class="dv">60</span>, <span class="st">"violet"</span>, <span class="st">"lightblue"</span>)</span>
+<span id="cb8-6"><a></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> duration_sec, <span class="at">y =</span> views)) <span class="sc">+</span></span>
+<span id="cb8-8"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> point_color), <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb8-9"><a></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb8-10"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"violet"</span> <span class="ot">=</span> <span class="st">"violet"</span>, <span class="st">"lightblue"</span> <span class="ot">=</span> <span class="st">"lightblue"</span>),</span>
+<span id="cb8-11"><a></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&gt;= 60 seconds"</span>, <span class="st">"&lt; 60 seconds"</span>)) <span class="sc">+</span></span>
+<span id="cb8-12"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb8-13"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-14"><a></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Video Length"</span>, <span class="at">x =</span> <span class="st">"Duration (seconds)"</span>, <span class="at">y =</span> <span class="st">"Views"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section id="deskriptive-statistik-i-1" class="title-slide slide level2 center">
+<h2>Deskriptive Statistik I</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+
+<section id="deskriptive-statistik-ii-aktivitätsmuster-i" class="title-slide slide level2 center">
+<h2>Deskriptive Statistik II (Aktivitätsmuster I)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>actors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"abumikail1"</span>, <span class="st">"adnanomar56"</span>, <span class="st">"ezwr1"</span>, <span class="st">"hasanatsammler"</span>, </span>
+<span id="cb9-2"><a></a>            <span class="st">"imauftragdesislam"</span>, <span class="st">"musliminteraktiv"</span>, <span class="st">"loveallah.de"</span>, <span class="st">"hidayaelisa"</span>)</span>
+<span id="cb9-3"><a></a>p_2 <span class="ot">&lt;-</span> muztok_df <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a></a>  <span class="fu">filter</span>(user.y <span class="sc">%in%</span> actors) <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> <span class="fu">log</span>(views), <span class="at">color =</span> user.y)) <span class="sc">+</span></span>
+<span id="cb9-6"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb9-7"><a></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-9"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb9-10"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Zeitraum"</span>, <span class="at">y =</span> <span class="st">"Log(Views)"</span>) <span class="sc">+</span></span>
+<span id="cb9-11"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(user.y))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section id="deskriptive-statistik-ii-aktivitätsmuster-i-1" class="title-slide slide level2 center">
+<h2>Deskriptive Statistik II (Aktivitätsmuster I)</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+
+<section id="deskriptive-statistik-ii-aktivitätsmuster-ii" class="title-slide slide level2 center">
+<h2>Deskriptive Statistik II (Aktivitätsmuster II)</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-7173d7bd2094a97e9079" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-7173d7bd2094a97e9079">{"x":{"data":[{"x":[1611273600,1611446400,1611532800,1611705600,1613088000,1613520000,1613606400,1613606400,1613779200,1613779200,1613865600,1614038400,1614124800,1614297600,1614297600,1614470400,1615075200,1615334400,1615507200,1615680000,1615680000,1615766400,1615680000,1615766400,1616025600,1616198400,1616284800,1616284800,1616284800,1616371200,1616457600,1616630400,1616630400,1616803200,1617753600,1618185600,1618704000,1618876800,1619222400,1620000000,1620259200,1620345600,1620432000,1620432000,1620518400,1620691200,1620691200,1620950400,1620259200,1621555200,1621728000,1621728000,1616457600,1621900800,1622246400,1625097600,1626048000,1626134400,1626307200,1627430400,1627430400,1629158400,1629331200,1629849600,1630713600,1630713600,1631059200,1631664000,1631664000,1632441600,1632441600,1632787200,1632873600,1632960000,1633392000,1633651200,1633996800,1634342400,1634515200,1634860800,1635033600,1638835200,1638835200,1639094400,1639440000,1640131200,1640304000],"y":[271,664,245,943,168,2299,192,1475,383,143,1151,4229,1334,47600,489,2318,116,214,8601,23000,1001,742,636,1418,358,24700,1849,654,124,2033,853,156,217,43900,996,155,1912,581,4730,137,165,6175,370,195,260,354,1094,6475,413,2905,333,2408,2736,346,796,1128,431,247,122,987,40200,253,264,642,197,799,71,271,902,13500,218,312,690,869,3238,2922,341,2280,4579,25800,1094,2541,15200,2891,633,669,747],"text":["Datum:  2021-01-22 <br>Likes:  271 <br>Länge:  15s","Datum:  2021-01-24 <br>Likes:  664 <br>Länge:  21s","Datum:  2021-01-25 <br>Likes:  245 <br>Länge:  21s","Datum:  2021-01-27 <br>Likes:  943 <br>Länge:  48s","Datum:  2021-02-12 <br>Likes:  168 <br>Länge:  59s","Datum:  2021-02-17 <br>Likes:  2299 <br>Länge:  30s","Datum:  2021-02-18 <br>Likes:  192 <br>Länge:  30s","Datum:  2021-02-18 <br>Likes:  1475 <br>Länge:  29s","Datum:  2021-02-20 <br>Likes:  383 <br>Länge:  39s","Datum:  2021-02-20 <br>Likes:  143 <br>Länge:  28s","Datum:  2021-02-21 <br>Likes:  1151 <br>Länge:  9s","Datum:  2021-02-23 <br>Likes:  4229 <br>Länge:  51s","Datum:  2021-02-24 <br>Likes:  1334 <br>Länge:  50s","Datum:  2021-02-26 <br>Likes:  47600 <br>Länge:  41s","Datum:  2021-02-26 <br>Likes:  489 <br>Länge:  59s","Datum:  2021-02-28 <br>Likes:  2318 <br>Länge:  21s","Datum:  2021-03-07 <br>Likes:  116 <br>Länge:  15s","Datum:  2021-03-10 <br>Likes:  214 <br>Länge:  19s","Datum:  2021-03-12 <br>Likes:  8601 <br>Länge:  59s","Datum:  2021-03-14 <br>Likes:  23000 <br>Länge:  24s","Datum:  2021-03-14 <br>Likes:  1001 <br>Länge:  42s","Datum:  2021-03-15 <br>Likes:  742 <br>Länge:  32s","Datum:  2021-03-14 <br>Likes:  636 <br>Länge:  41s","Datum:  2021-03-15 <br>Likes:  1418 <br>Länge:  57s","Datum:  2021-03-18 <br>Likes:  358 <br>Länge:  10s","Datum:  2021-03-20 <br>Likes:  24700 <br>Länge:  12s","Datum:  2021-03-21 <br>Likes:  1849 <br>Länge:  54s","Datum:  2021-03-21 <br>Likes:  654 <br>Länge:  45s","Datum:  2021-03-21 <br>Likes:  124 <br>Länge:  15s","Datum:  2021-03-22 <br>Likes:  2033 <br>Länge:  57s","Datum:  2021-03-23 <br>Likes:  853 <br>Länge:  40s","Datum:  2021-03-25 <br>Likes:  156 <br>Länge:  48s","Datum:  2021-03-25 <br>Likes:  217 <br>Länge:  41s","Datum:  2021-03-27 <br>Likes:  43900 <br>Länge:  13s","Datum:  2021-04-07 <br>Likes:  996 <br>Länge:  10s","Datum:  2021-04-12 <br>Likes:  155 <br>Länge:  10s","Datum:  2021-04-18 <br>Likes:  1912 <br>Länge:  22s","Datum:  2021-04-20 <br>Likes:  581 <br>Länge:  43s","Datum:  2021-04-24 <br>Likes:  4730 <br>Länge:  59s","Datum:  2021-05-03 <br>Likes:  137 <br>Länge:  29s","Datum:  2021-05-06 <br>Likes:  165 <br>Länge:  46s","Datum:  2021-05-07 <br>Likes:  6175 <br>Länge:  23s","Datum:  2021-05-08 <br>Likes:  370 <br>Länge:  33s","Datum:  2021-05-08 <br>Likes:  195 <br>Länge:  28s","Datum:  2021-05-09 <br>Likes:  260 <br>Länge:  10s","Datum:  2021-05-11 <br>Likes:  354 <br>Länge:  10s","Datum:  2021-05-11 <br>Likes:  1094 <br>Länge:  10s","Datum:  2021-05-14 <br>Likes:  6475 <br>Länge:  38s","Datum:  2021-05-06 <br>Likes:  413 <br>Länge:  42s","Datum:  2021-05-21 <br>Likes:  2905 <br>Länge:  54s","Datum:  2021-05-23 <br>Likes:  333 <br>Länge:  56s","Datum:  2021-05-23 <br>Likes:  2408 <br>Länge:  30s","Datum:  2021-03-23 <br>Likes:  2736 <br>Länge:  15s","Datum:  2021-05-25 <br>Likes:  346 <br>Länge:  15s","Datum:  2021-05-29 <br>Likes:  796 <br>Länge:  56s","Datum:  2021-07-01 <br>Likes:  1128 <br>Länge:  52s","Datum:  2021-07-12 <br>Likes:  431 <br>Länge:  94s (~1.57 minutes)","Datum:  2021-07-13 <br>Likes:  247 <br>Länge:  45s","Datum:  2021-07-15 <br>Likes:  122 <br>Länge:  22s","Datum:  2021-07-28 <br>Likes:  987 <br>Länge:  32s","Datum:  2021-07-28 <br>Likes:  40200 <br>Länge:  36s","Datum:  2021-08-17 <br>Likes:  253 <br>Länge:  27s","Datum:  2021-08-19 <br>Likes:  264 <br>Länge:  157s (~2.62 minutes)","Datum:  2021-08-25 <br>Likes:  642 <br>Länge:  88s (~1.47 minutes)","Datum:  2021-09-04 <br>Likes:  197 <br>Länge:  180s (~3 minutes)","Datum:  2021-09-04 <br>Likes:  799 <br>Länge:  145s (~2.42 minutes)","Datum:  2021-09-08 <br>Likes:  71 <br>Länge:  104s (~1.73 minutes)","Datum:  2021-09-15 <br>Likes:  271 <br>Länge:  180s (~3 minutes)","Datum:  2021-09-15 <br>Likes:  902 <br>Länge:  90s (~1.5 minutes)","Datum:  2021-09-24 <br>Likes:  13500 <br>Länge:  35s","Datum:  2021-09-24 <br>Likes:  218 <br>Länge:  64s (~1.07 minutes)","Datum:  2021-09-28 <br>Likes:  312 <br>Länge:  12s","Datum:  2021-09-29 <br>Likes:  690 <br>Länge:  17s","Datum:  2021-09-30 <br>Likes:  869 <br>Länge:  45s","Datum:  2021-10-05 <br>Likes:  3238 <br>Länge:  37s","Datum:  2021-10-08 <br>Likes:  2922 <br>Länge:  47s","Datum:  2021-10-12 <br>Likes:  341 <br>Länge:  54s","Datum:  2021-10-16 <br>Likes:  2280 <br>Länge:  31s","Datum:  2021-10-18 <br>Likes:  4579 <br>Länge:  52s","Datum:  2021-10-22 <br>Likes:  25800 <br>Länge:  119s (~1.98 minutes)","Datum:  2021-10-24 <br>Likes:  1094 <br>Länge:  59s","Datum:  2021-12-07 <br>Likes:  2541 <br>Länge:  103s (~1.72 minutes)","Datum:  2021-12-07 <br>Likes:  15200 <br>Länge:  50s","Datum:  2021-12-10 <br>Likes:  2891 <br>Länge:  60s (~1 minutes)","Datum:  2021-12-14 <br>Likes:  633 <br>Länge:  20s","Datum:  2021-12-22 <br>Likes:  669 <br>Länge:  55s","Datum:  2021-12-24 <br>Likes:  747 <br>Länge:  32s"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":0.5,"size":[8.4956445271032415,12.014655711330162,12.014655711330162,21.659728612123583,24.52481327331213,15.893895550120721,15.893895550120721,15.510853826799178,18.996838675276898,15.118110236220474,0,22.47736264592211,22.208162963074592,19.619850618649707,24.52481327331213,12.014655711330162,8.4956445271032415,10.967829922923011,24.52481327331213,13.432793448395167,19.924052489891352,16.633537639413341,19.619850618649707,24.029311422660324,3.4683323545785711,6.0073278556650811,23.266280740198766,20.80999412747143,8.4956445271032415,24.029311422660324,19.310857282272909,21.659728612123583,19.619850618649707,6.9366647091571423,3.4683323545785711,3.4683323545785711,12.50525014478379,20.223679114883186,24.52481327331213,15.510853826799178,21.097042089051534,12.977311374295969,16.991289054206483,15.118110236220474,3.4683323545785711,3.4683323545785711,3.4683323545785711,18.677541335322474,19.924052489891352,23.266280740198766,23.777688662386367,15.893895550120721,8.4956445271032415,8.4956445271032415,23.777688662386367,22.743376196996596,31.976444335704457,20.80999412747143,12.50525014478379,16.633537639413341,18.021983566995242,14.714887963987278,42.194084178103068,30.827212271360292,45.354330708661422,40.447358229766373,33.805122179524382,45.354330708661422,31.214991191207144,17.685094355621345,25.721841160770545,6.0073278556650811,9.8099253093248535,20.80999412747143,18.352689748667988,21.380236533514505,23.266280740198766,16.267920736220837,22.743376196996596,36.376176618768213,24.52481327331213,33.626729788231785,22.208162963074592,24.768847276622378,11.503157068387006,23.523374519901704,16.633537639413341],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1630713600,1630713600],"y":[-2305.4500000000003,49976.449999999997],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(102,205,170,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1630713600],"y":[40000],"text":"Ann. 11.09.","hovertext":"","textfont":{"size":7.559055118110237,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1625097600,1625097600],"y":[-2305.4500000000003,49976.449999999997],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(102,205,170,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1625097600],"y":[40000],"text":"Ann. Marwa El-Sherbini","hovertext":"","textfont":{"size":7.559055118110237,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1615334400,1615334400],"y":[-2305.4500000000003,49976.449999999997],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(102,205,170,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1615334400],"y":[40000],"text":"Ann. Christchurch","hovertext":"","textfont":{"size":7.559055118110237,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1616803200,1616803200],"y":[-2305.4500000000003,49976.449999999997],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(102,205,170,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1616803200],"y":[30000],"text":"Rassismus Polizei","hovertext":"","textfont":{"size":7.559055118110237,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1621728000,1621728000],"y":[-2305.4500000000003,49976.449999999997],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(102,205,170,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1621728000],"y":[30000],"text":"C.Özdemir Araber Zitat","hovertext":"","textfont":{"size":7.559055118110237,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1620345600,1620345600],"y":[-2305.4500000000003,49976.449999999997],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(102,205,170,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1620345600],"y":[40000],"text":"Bundesratbeschl. Kopftuch<br />Al-Aqsa","hovertext":"","textfont":{"size":7.559055118110237,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1627430400,1627430400],"y":[-2305.4500000000003,49976.449999999997],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(102,205,170,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1627430400],"y":[30000],"text":"S.Kurz Bild Interview","hovertext":"","textfont":{"size":7.559055118110237,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1613520000,1613520000],"y":[-2305.4500000000003,49976.449999999997],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(102,205,170,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1613520000],"y":[30000],"text":"Ann. Hanau","hovertext":"","textfont":{"size":7.559055118110237,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1634860800,1634860800],"y":[-2305.4500000000003,49976.449999999997],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(102,205,170,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1634860800],"y":[30000],"text":"Bild Adhan","hovertext":"","textfont":{"size":7.559055118110237,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":30.611872146118724,"r":7.3059360730593621,"b":44.56621004566211,"l":54.794520547945211},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1609822080,1641755520],"tickmode":"array","ticktext":["Apr 2021","Jul 2021","Oct 2021","Jan 2022"],"tickvals":[1617235200,1625097600,1633046400,1640995200],"categoryorder":"array","categoryarray":["Apr 2021","Jul 2021","Oct 2021","Jan 2022"],"nticks":null,"ticks":"outside","tickcolor":"rgba(179,179,179,1)","ticklen":3.6529680365296811,"tickwidth":0.33208800332088001,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(222,222,222,1)","gridwidth":0.33208800332088001,"zeroline":false,"anchor":"y","title":{"text":"Datum","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2305.4500000000003,49976.449999999997],"tickmode":"array","ticktext":["0","10000","20000","30000","40000"],"tickvals":[0,10000,20000,29999.999999999996,40000],"categoryorder":"array","categoryarray":["0","10000","20000","30000","40000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(179,179,179,1)","ticklen":3.6529680365296811,"tickwidth":0.33208800332088001,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(222,222,222,1)","gridwidth":0.33208800332088001,"zeroline":false,"anchor":"x","title":{"text":"Likes","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(179,179,179,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Video Length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"x unified","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"34902ca18528":{"x":{},"y":{},"text":{},"size":{},"type":"scatter"},"349016ae5c7d":{"xintercept":{}},"34907ca6d35f":{"x":{},"y":{}},"34906950ed83":{"xintercept":{}},"349094c6521":{"x":{},"y":{}},"3490167948d7":{"xintercept":{}},"3490377f13f8":{"x":{},"y":{}},"34906e34cd6f":{"xintercept":{}},"349061d6ef29":{"x":{},"y":{}},"349032d75f4d":{"xintercept":{}},"34907da14fb":{"x":{},"y":{}},"34904fc87b10":{"xintercept":{}},"3490351a278":{"x":{},"y":{}},"34906ae45e43":{"xintercept":{}},"34906e6eb2ea":{"x":{},"y":{}},"34901355e4af":{"xintercept":{}},"3490333966cf":{"x":{},"y":{}},"349060f4749f":{"xintercept":{}},"349033b4eb67":{"x":{},"y":{}}},"cur_data":"34902ca18528","visdat":{"34902ca18528":["function (y) ","x"],"349016ae5c7d":["function (y) ","x"],"34907ca6d35f":["function (y) ","x"],"34906950ed83":["function (y) ","x"],"349094c6521":["function (y) ","x"],"3490167948d7":["function (y) ","x"],"3490377f13f8":["function (y) ","x"],"34906e34cd6f":["function (y) ","x"],"349061d6ef29":["function (y) ","x"],"349032d75f4d":["function (y) ","x"],"34907da14fb":["function (y) ","x"],"34904fc87b10":["function (y) ","x"],"3490351a278":["function (y) ","x"],"34906ae45e43":["function (y) ","x"],"34906e6eb2ea":["function (y) ","x"],"34901355e4af":["function (y) ","x"],"3490333966cf":["function (y) ","x"],"349060f4749f":["function (y) ","x"],"349033b4eb67":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+
+<section id="textanalyse" class="title-slide slide level2 center">
+<h2>Textanalyse</h2>
+
+<img data-src="helper_figs/grimmer_2013.png" style="width:80.0%" class="r-stretch"></section>
+
+<section id="beispiel-2---twitter-daten" class="title-slide slide level2 smaller center">
+<h2>Beispiel 2 - Twitter Daten</h2>
+<div class="custom-small">
+<table class="caption-top">
+<colgroup>
+<col style="width: 53%">
+<col style="width: 12%">
+<col style="width: 14%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Organization</th>
+<th>Twitter handle</th>
+<th>Retrieved tweets</th>
+<th>Period</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Generation Islam</td>
+<td><span class="citation" data-cites="genislam1">@genislam1</span></td>
+<td>3132</td>
+<td>22/07/2019 - 19/04/2022</td>
+</tr>
+<tr class="even">
+<td>Zentralrat der Muslime in Deutschland</td>
+<td><span class="citation" data-cites="der_zmd">@der_zmd</span></td>
+<td>1534</td>
+<td>16/05/2016 - 22/04/2022</td>
+</tr>
+<tr class="odd">
+<td>Bundesverband der “Türkisch-Islamischen Union der Anstalt für Religion”</td>
+<td><span class="citation" data-cites="DITIBkoln">@DITIBkoln</span></td>
+<td>978</td>
+<td>28/02/2012 - 27/04/2022</td>
+</tr>
+<tr class="even">
+<td>Jugendorganisation der “Islamischen Gemeinschaft Millî Görüş”</td>
+<td><span class="citation" data-cites="igmggenclik">@igmggenclik</span></td>
+<td>3200</td>
+<td>24/09/2016 - 27/04/2022</td>
+</tr>
+<tr class="odd">
+<td>Islamrat für die Bundesrepublik Deutschland</td>
+<td><span class="citation" data-cites="Islamratbrd">@Islamratbrd</span></td>
+<td>1246</td>
+<td>27/09/2013 - 27/04/2022</td>
+</tr>
+<tr class="even">
+<td>Alhambra-Gesellschaft</td>
+<td><span class="citation" data-cites="Alhambra_eV">@Alhambra_eV</span></td>
+<td>1335</td>
+<td>26/10/2017 - 27/04/2022</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Code findet ihr unter: <a href="https://nader-hotait.github.io/posts/2022/05/blog-post-1/"><span>https://nader-hotait.github.io/posts/2022/05/blog-post-1/</span></a></p>
+</section>
+
+<section id="pre-processing" class="title-slide slide level2 center">
+<h2>Pre-Processing</h2>
+
+<img data-src="helper_figs/preprocessing-1.png" style="width:80.0%" class="r-stretch"></section>
+
+<section id="unknown-categories-i---co-occurances" class="title-slide slide level2 center">
+<h2>Unknown Categories I - Co-Occurances</h2>
+
+<img data-src="helper_figs/feature_co_occur/feature_co_occur-1.png" style="width:70.0%" class="r-stretch"></section>
+
+<section id="unknown-categories-i---co-occurances-1" class="title-slide slide level2 center">
+<h2>Unknown Categories I - Co-Occurances</h2>
+
+<img data-src="helper_figs/wc-2/wc-2-1.png" style="width:70.0%" class="r-stretch"></section>
+
+<section id="unknown-categories-i---topic-modelling" class="title-slide slide level2 center">
+<h2>Unknown Categories I - Topic Modelling</h2>
+<div class="custom-small">
+<table class="caption-top">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 16%">
+<col style="width: 74%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Topic #</th>
+<th>Topic Proportions</th>
+<th>Top Words</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>9%</td>
+<td>get, know, face, need, boy, demolish, call, offic, border, around</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>15%</td>
+<td>bomb, crime, call, terrorist, strike, dead, tortur, night, want, stop</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>20%</td>
+<td>deutsch, macht, regierung, millionen, viel, kommt, weiß, wert, sieht, ihrem</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>16%</td>
+<td>europa, frankreich, kopftuch, eltern, flüchtling, neue, problem, islamfeindlichkeit, kampf, cdu</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>6%</td>
+<td>use, support, uyghur, famili, target, brother, live, pleas, accus, stand</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>7%</td>
+<td>prison, part, account, islam, state, news, ban, claim, leader, victim</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>5%</td>
+<td>artikel, tage, westlich, extremist, generat, ahmad, ersten, kurz, youtub, rechten</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>7%</td>
+<td>destroy, watch, arrest, girl, attack, camp, group, right, show, human</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>5%</td>
+<td>brutal, protest, villag, murder, imam, intern, muhammad, isra, religion, assault</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>9%</td>
+<td>palästina, nazi, palästinens, nachdem, zionistisch, weiter, wohl, geschicht, zionistischen, gewalt</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="known-categories-i---naive-bayes" class="title-slide slide level2 center">
+<h2>Known Categories I - Naive Bayes</h2>
+
+<img data-src="helper_figs/naive_bayes/naive_bayes-1.png" style="width:80.0%" class="r-stretch"></section>
+
+<section id="known-categories-i---naive-bayes-1" class="title-slide slide level2 center">
+<h2>Known Categories I - Naive Bayes</h2>
+
+<img data-src="helper_figs/nb_coef/nb_coef-1.png" style="width:80.0%" class="r-stretch"></section>
+
+<section id="keyness" class="title-slide slide level2 center">
+<h2>Keyness</h2>
+
+<img data-src="helper_figs/keyness/keyness-1.png" style="width:80.0%" class="r-stretch"></section>
+
+<section id="known-categories-ii---glmnet" class="title-slide slide level2 center">
+<h2>Known Categories II - Glmnet</h2>
+
+<img data-src="helper_figs/caret_stack/caret_stack-1.png" style="width:80.0%" class="r-stretch"></section>
+
+<section id="weitere-möglichkeiten" class="title-slide slide level2 smaller center">
+<h2>Weitere Möglichkeiten</h2>
+<ul>
+<li>In R:
+<ul>
+<li>Sentiment Analysis</li>
+<li>Implementierung von OpenAI funktionen (openai)</li>
+<li>Latent Semantic Analysis (LSA)</li>
+<li>Lexical dispersion</li>
+<li>Wordfish</li>
+</ul></li>
+<li>Außerhalb:
+<ul>
+<li>GPT Modelle</li>
+<li>BERD Modelle</li>
+<li>…</li>
+</ul></li>
+<li>Nutzung von Dokumentvariablen
+<ul>
+<li>Akteur und Term Use</li>
+<li>Themen und Sentiments über Zeit</li>
+</ul></li>
+</ul>
+</section>
+
+<section id="wie-nutze-ich-das-in-meiner-forschung" class="title-slide slide level2 center">
+<h2>Wie nutze ich das in meiner Forschung?</h2>
+<ul>
+<li>Sampling von Akteuren und Videos</li>
+<li>Explorative Studien</li>
+<li>Online Studien</li>
+<li>Deskriptive Forschung</li>
+<li>Kausale Fragestellungen</li>
+<li>Mixed Methods</li>
+</ul>
+</section>
+
+<section id="beispiel-german-female-muslim-content-creators" class="title-slide slide level2 smaller center">
+<h2>Beispiel: German Female Muslim Content Creators</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data</th>
+<th>Videos</th>
+<th>Start</th>
+<th>Stop</th>
+<th>Views (±95% CI)</th>
+<th>Likes (±95% CI)</th>
+<th>Comments (±95% CI)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>All</td>
+<td>8936</td>
+<td>’19-09-28</td>
+<td>’23-12-23</td>
+<td>173,716 (±17.1K)</td>
+<td>15,161 (±1,489)</td>
+<td>202 (±23)</td>
+</tr>
+<tr class="even">
+<td>Sample</td>
+<td>320</td>
+<td>’20-03-11</td>
+<td>’23-12-21</td>
+<td>147,061 (±35.7K)</td>
+<td>18,123 (±4,860)</td>
+<td>173 (±69)</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section id="beispiel" class="title-slide slide level2 center">
+<h2>Beispiel</h2>
+<div class="custom-small">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 4%">
+<col style="width: 16%">
+<col style="width: 4%">
+<col style="width: 24%">
+<col style="width: 3%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Main Topic</th>
+<th>n</th>
+<th>Video Format</th>
+<th>n</th>
+<th>Content Type</th>
+<th>n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Personal and Social Life</td>
+<td>103</td>
+<td>Music</td>
+<td>186</td>
+<td>Presentation</td>
+<td>54</td>
+</tr>
+<tr class="even">
+<td>Beauty, Style, and Fashion</td>
+<td>70</td>
+<td>Audio Templates</td>
+<td>32</td>
+<td>Comedy</td>
+<td>49</td>
+</tr>
+<tr class="odd">
+<td>Religious and Theological Topics and Knowledge</td>
+<td>63</td>
+<td>Reply (Comment)</td>
+<td>26</td>
+<td>Diashow</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>Promotion, Tips, Commerce, Inspiration</td>
+<td>62</td>
+<td>Image Blending</td>
+<td>13</td>
+<td>Vlog Formats/Impressions</td>
+<td>43</td>
+</tr>
+<tr class="odd">
+<td>Social Justice and Political Advocacy</td>
+<td>50</td>
+<td>Stitches</td>
+<td>13</td>
+<td>Text-Commented Video</td>
+<td>29</td>
+</tr>
+<tr class="even">
+<td>Cultural-Religious Identity and Life</td>
+<td>42</td>
+<td>Green Screening</td>
+<td>10</td>
+<td>Storytelling</td>
+<td>28</td>
+</tr>
+<tr class="odd">
+<td>Hijab and Life as a Hijabi</td>
+<td>39</td>
+<td>Filters</td>
+<td>5</td>
+<td>Dialogue/Acting</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td>Self(re-)presentation</td>
+<td>14</td>
+<td>Slideshow</td>
+<td>2</td>
+<td>Singalong</td>
+<td>18</td>
+</tr>
+<tr class="odd">
+<td>MISC</td>
+<td>11</td>
+<td></td>
+<td></td>
+<td>Dance/Choreography</td>
+<td>17</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Tutorial</td>
+<td>14</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Speakalong</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cooking Show</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Challenge</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Poetry Slam</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Singing</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Interview</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="beispiel-1" class="title-slide slide level2 center">
+<h2>Beispiel</h2>
+
+<img data-src="helper_figs/pca-1.png" class="r-stretch"></section>
+
+<section id="vielen-dank" class="title-slide slide level2 center">
+<h2>Vielen Dank!</h2>
+
+<div class="quarto-auto-generated-content">
+<p><img src="hu_siegel-kombi_rgb.png" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
         }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/nader-hotait\.github\.io\/pres_smd\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
         }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
       }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
       }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
       });
-    }
-  }
-});
-</script>
-</div> <!-- /content -->
-
-
-
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Kopiert");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Kopiert");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/nader-hotait\.github\.io\/pres_smd\/");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
 
 </body></html>

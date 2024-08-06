@@ -1,10 +1,255 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "pres_smd",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "objectID": "index.html#inhalt",
+    "href": "index.html#inhalt",
+    "title": "Social Media Data in R?",
+    "section": "Inhalt",
+    "text": "Inhalt\n\nWie kommen wir an Daten?\nWelche Daten kriegen wir?\nWas können wir mit den Daten so machen?\n\n\nFokus auf TikTok!"
+  },
+  {
+    "objectID": "index.html#wie-kommen-wir-an-daten",
+    "href": "index.html#wie-kommen-wir-an-daten",
+    "title": "Social Media Data in R?",
+    "section": "Wie kommen wir an Daten?",
+    "text": "Wie kommen wir an Daten?"
+  },
+  {
+    "objectID": "index.html#datenzugänge",
+    "href": "index.html#datenzugänge",
+    "title": "Social Media Data in R?",
+    "section": "Datenzugänge",
+    "text": "Datenzugänge\n\n\nQuellen und ihre Zugänglichkeit\n\n\n\n\n\n\n\n\n\nWebsite\nCode\nDatenbank\n\n\n\n\nZugriff\nManuell\nAutomatisiert (Webscraping)\nAutomatisiert (Abfrage)\n\n\nVerfügbare Daten\nAusreichend\nAusreichend\nErweitert\n\n\nDatenqualität\nHoch\nMittel bis Hoch\nHoch\n\n\nSchwierigkeit\nEinfach\nMedium\nEinfach bis Schwer\n\n\nDatenvolumen\nNiedrig\nGroß\nGroß\n\n\nNutzbar für euch?\nJa\nJa\nNein\n\n\n\n\n\nAusnahme: Nutzungsdaten!"
+  },
+  {
+    "objectID": "index.html#welche-informationen-auf-sozialen-medien",
+    "href": "index.html#welche-informationen-auf-sozialen-medien",
+    "title": "Social Media Data in R?",
+    "section": "Welche Informationen auf Sozialen Medien?",
+    "text": "Welche Informationen auf Sozialen Medien?\n\n\nURLs\nHandles\nLikes\nViews\nComments\nShares\nDuration\nDescription, Hashtags, Tags\nSound\nDate"
+  },
+  {
+    "objectID": "index.html#welche-informationen-auf-sozialen-medien-1",
+    "href": "index.html#welche-informationen-auf-sozialen-medien-1",
+    "title": "Social Media Data in R?",
+    "section": "Welche Informationen auf Sozialen Medien?",
+    "text": "Welche Informationen auf Sozialen Medien?\n\nURLs: Quelle, Referenzierbarkeit\nHandles: Adressat, Referenzierbarkeit\nLikes: Popularität\nViews: Popularität, Sichtbarkeit\nComments: Interaktionen, Popularität\nShares: Popularität, Weitergabe\nDuration: Inhalt-Dauer Zusammenhang\nDescription, Hashtags, Tags: Inhalt, Beschreibung, Diskurse, Netzwerke\nSound: Diskurse, Künstlerische Untermauerung\nDate: Zeitlicher Kontext"
+  },
+  {
+    "objectID": "index.html#beispiel-donald-trump-on-tiktok",
+    "href": "index.html#beispiel-donald-trump-on-tiktok",
+    "title": "Social Media Data in R?",
+    "section": "Beispiel: Donald Trump on TikTok",
+    "text": "Beispiel: Donald Trump on TikTok"
+  },
+  {
+    "objectID": "index.html#wie-kriegen-wir-die-daten-jetzt",
+    "href": "index.html#wie-kriegen-wir-die-daten-jetzt",
+    "title": "Social Media Data in R?",
+    "section": "Wie kriegen wir die Daten jetzt?",
+    "text": "Wie kriegen wir die Daten jetzt?\n\n\nEntwicklung von Webscraper über R oder Python mit Selenium\n\nZeitaufwending\nWenig Referenzprojekte vorhadnen\n\nWebscraping mit Dienstleister\n\nWeniger Flexibilität\nMeist Kosten\nAber: Einfacher für euch!"
+  },
+  {
+    "objectID": "index.html#webscraping-mit-dienstleister",
+    "href": "index.html#webscraping-mit-dienstleister",
+    "title": "Social Media Data in R?",
+    "section": "Webscraping mit Dienstleister",
+    "text": "Webscraping mit Dienstleister"
+  },
+  {
+    "objectID": "index.html#unser-datensatz",
+    "href": "index.html#unser-datensatz",
+    "title": "Social Media Data in R?",
+    "section": "Unser Datensatz",
+    "text": "Unser Datensatz\n\nlibrary(tidyverse)\nlibrary(readxl)\nlibrary(scales)\nlibrary(plotly)\ntrump_posts &lt;- read_excel(\"trump_posts.xlsx\")\ntrump_page &lt;- read_excel(\"trump_page.xlsx\")\n\ntrump_df &lt;- trump_posts %&gt;%\n  left_join(trump_page, by = \"Page_URL\")"
+  },
+  {
+    "objectID": "index.html#unser-datensatz-1",
+    "href": "index.html#unser-datensatz-1",
+    "title": "Social Media Data in R?",
+    "section": "Unser Datensatz",
+    "text": "Unser Datensatz\n\n\n# A tibble: 6 × 4\n  Page_URL                                   post_likes post_comments post_saved\n  &lt;chr&gt;                                      &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt;     \n1 https://www.tiktok.com/@realdonaldtrump/v… 392.2K     10.2K         21.4K     \n2 https://www.tiktok.com/@realdonaldtrump/v… 616.7K     12.7K         34.7K     \n3 https://www.tiktok.com/@realdonaldtrump/v… 1.5M       29.3K         104.2K    \n4 https://www.tiktok.com/@realdonaldtrump/v… 694K       14.4K         48.3K     \n5 https://www.tiktok.com/@realdonaldtrump/v… 7.9M       126.6K        598.8K    \n6 https://www.tiktok.com/@realdonaldtrump/v… 5.2M       66.9K         334.2K    \n\n\n# A tibble: 6 × 7\n  views description.y tags  links account_follows account_follower account_likes\n  &lt;chr&gt; &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;        \n1 6M    100 days lef… @Jak… &lt;NA&gt;  2               9.4M             25.7M        \n2 6.5M  with          #sti… @Tea… 2               9.4M             25.7M        \n3 14M   KAMALA, YOU’… &lt;NA&gt;  &lt;NA&gt;  2               9.4M             25.7M        \n4 74.8M We love you … &lt;NA&gt;  Supp… 2               9.4M             25.7M        \n5 80.2M No Tax on Ti… &lt;NA&gt;  &lt;NA&gt;  2               9.4M             25.7M        \n6 157M  Face off with @Log… drop… 2               9.4M             25.7M"
+  },
+  {
+    "objectID": "index.html#nutzungsdaten-auf-tiktok",
+    "href": "index.html#nutzungsdaten-auf-tiktok",
+    "title": "Social Media Data in R?",
+    "section": "Nutzungsdaten auf TikTok",
+    "text": "Nutzungsdaten auf TikTok"
+  },
+  {
+    "objectID": "index.html#verarbeitung-von-nutzungsdaten",
+    "href": "index.html#verarbeitung-von-nutzungsdaten",
+    "title": "Social Media Data in R?",
+    "section": "Verarbeitung von Nutzungsdaten",
+    "text": "Verarbeitung von Nutzungsdaten\n\nlibrary(jsonlite)\nlibrary(purrr)\nlibrary(lubridate)\nuser_data &lt;- fromJSON(\"user_data.json\")\n\nglimpse(user_data)\n\nList of 9\n $ Activity       :List of 14\n  ..$ Favorite Effects      : Named list()\n  ..$ Favorite Hashtags     :List of 1\n  .. ..$ FavoriteHashtagList: NULL\n  ..$ Favorite Sounds       :List of 1\n  .. ..$ FavoriteSoundList: NULL\n  ..$ Favorite Videos       :List of 1\n  .. ..$ FavoriteVideoList: NULL\n  ..$ Follower List         :List of 1\n  .. ..$ FansList:'data.frame': 2 obs. of  2 variables:\n  ..$ Following List        :List of 1\n  .. ..$ Following:'data.frame':    10 obs. of  2 variables:\n  ..$ Hashtag               : Named list()\n  ..$ Like List             :List of 1\n  .. ..$ ItemFavoriteList:'data.frame': 304 obs. of  2 variables:\n  ..$ Login History         :List of 1\n  .. ..$ LoginHistoryList:'data.frame': 58 obs. of  6 variables:\n  ..$ Purchase History      : Named list()\n  ..$ Search History        :List of 1\n  .. ..$ SearchList:'data.frame':   13 obs. of  2 variables:\n  ..$ Share History         :List of 1\n  .. ..$ ShareHistoryList:'data.frame': 2 obs. of  4 variables:\n  ..$ Status                :List of 1\n  .. ..$ Status List:'data.frame':  1 obs. of  7 variables:\n  ..$ Video Browsing History:List of 1\n  .. ..$ VideoList:'data.frame':    1161 obs. of  2 variables:\n $ Ads and data   :List of 3\n  ..$ Ad Interests                                 :List of 1\n  .. ..$ AdInterestCategories: chr \"\"\n  ..$ Ads Based On Data Received From Partners     :List of 2\n  .. ..$ DataPartnerList: chr \"\"\n  .. ..$ AdvertiserList : chr \"\"\n  ..$ Usage Data From Third-Party Apps And Websites: Named list()\n $ App Settings   :List of 2\n  ..$ Block   : Named list()\n  ..$ Settings:List of 1\n  .. ..$ SettingsMap:List of 16\n $ Comment        :List of 1\n  ..$ Comments: Named list()\n $ Direct Messages:List of 1\n  ..$ Chat History:List of 1\n  .. ..$ ChatHistory: Named list()\n $ Profile        :List of 1\n  ..$ Profile Information:List of 1\n  .. ..$ ProfileMap:List of 9\n $ Tiktok Live    :List of 4\n  ..$ Go Live History    : Named list()\n  ..$ Go Live Settings   :List of 1\n  .. ..$ SettingsMap:List of 11\n  ..$ Watch Live History : Named list()\n  ..$ Watch Live Settings:List of 3\n  .. ..$ WatchLiveSettingsMap           :List of 2\n  .. ..$ MostRecentModificationTimeInApp: chr \"1660529019690\"\n  .. ..$ MostRecentModificationTimeInWeb: chr \"0\"\n $ Tiktok Shopping:List of 11\n  ..$ Communication History      : Named list()\n  ..$ Current Payment Information:List of 1\n  .. ..$ PayCard: NULL\n  ..$ Customer Support History   : Named list()\n  ..$ Order Dispute History      : Named list()\n  ..$ Order History              : Named list()\n  ..$ Product Browsing History   : Named list()\n  ..$ Product Review History     : Named list()\n  ..$ Return and Refund History  : Named list()\n  ..$ Saved Address Information  :List of 1\n  .. ..$ SavedAddress: NULL\n  ..$ Shopping Cart List         :List of 1\n  .. ..$ ShoppingCart: NULL\n  ..$ Vouchers                   :List of 1\n  .. ..$ Vouchers: NULL\n $ Video          :List of 1\n  ..$ Videos: Named list()"
+  },
+  {
+    "objectID": "index.html#verarbeitung-von-nutzungsdaten-1",
+    "href": "index.html#verarbeitung-von-nutzungsdaten-1",
+    "title": "Social Media Data in R?",
+    "section": "Verarbeitung von Nutzungsdaten",
+    "text": "Verarbeitung von Nutzungsdaten\n\nvideo_list &lt;- user_data[[\"Activity\"]][[\"Video Browsing History\"]][[\"VideoList\"]]\nvideo_list$Date &lt;- ymd_hms(video_list$Date)\n\nhead(video_list)\n\n                 Date                                                VideoLink\n1 2022-08-16 12:53:30 https://www.tiktokv.com/share/video/7128382140387036421/\n2 2022-08-16 12:53:30 https://www.tiktokv.com/share/video/7131424863759158533/\n3 2022-08-16 12:53:18 https://www.tiktokv.com/share/video/7125796582599052549/\n4 2022-08-16 12:53:03 https://www.tiktokv.com/share/video/7109848649676410117/\n5 2022-08-16 12:52:57 https://www.tiktokv.com/share/video/7132098866878500101/\n6 2022-08-16 12:52:46 https://www.tiktokv.com/share/video/7131125515900947718/"
+  },
+  {
+    "objectID": "index.html#was-kann-ich-mit-den-daten-so-machen",
+    "href": "index.html#was-kann-ich-mit-den-daten-so-machen",
+    "title": "Social Media Data in R?",
+    "section": "Was kann ich mit den Daten so machen?",
+    "text": "Was kann ich mit den Daten so machen?\n\nQuantitative Analyse:\n\nDeskriptive Statistik (Uni- und Multivariat)\nHarmonisierung mit externen Datenquellen\nQuantitative Textanalyse (Natural Language Processing)\nMachinelles Lernen, Big Data Analysen usw.\n\nQualitative Analyse\n\nTranskription Audio-Visueller Inhalte\nKodierung und Interpretation der Inhalte\n\nMixed-Methods\n\nQuantifizierung von Kodierungen\nGegenüberstellung verschiedener Daten (Kodierungen, Likes, Views, usw.)"
+  },
+  {
+    "objectID": "index.html#beispiel-1-muztok",
+    "href": "index.html#beispiel-1-muztok",
+    "title": "Social Media Data in R?",
+    "section": "Beispiel 1 (MuzTok)",
+    "text": "Beispiel 1 (MuzTok)\n\nGerman Muslim Influencers (2022)\n\n\n\n\n\n\n\n\n\n\nGender\nAccounts\nVideos\nAvg.Videos\nAvg.Views\nAvg.Likes\n\n\n\n\nAll\n43\n2983\n69\n11.3M\n962.9K\n\n\ncouple\n2\n131\n66\n107.5M\n6.7M\n\n\nfemale\n6\n406\n68\n7.3M\n645.6K\n\n\nmale\n33\n2345\n71\n6.6M\n677.1K\n\n\nunknown\n2\n101\n50\n5.4M\n907.9K"
+  },
+  {
+    "objectID": "index.html#deskriptive-statistik-i",
+    "href": "index.html#deskriptive-statistik-i",
+    "title": "Social Media Data in R?",
+    "section": "Deskriptive Statistik I",
+    "text": "Deskriptive Statistik I\n\nmuztok_df &lt;- read_excel(\"muztok_df.xlsx\")\n\np_1 &lt;- muztok_df %&gt;%\n  mutate(\n    point_color = ifelse(duration_sec &lt; 60, \"violet\", \"lightblue\")\n  ) %&gt;%\n  ggplot(aes(x = duration_sec, y = views)) +\n  geom_point(aes(color = point_color), alpha = 0.6) +\n  scale_color_manual(\n    values = c(\"violet\" = \"violet\", \"lightblue\" = \"lightblue\"),\n    labels = c(\"&gt;= 60 seconds\", \"&lt; 60 seconds\")) +\n  scale_y_continuous(labels = label_comma()) +\n  theme_minimal() +\n  labs(color = \"Video Length\", x = \"Duration (seconds)\", y = \"Views\")"
+  },
+  {
+    "objectID": "index.html#deskriptive-statistik-i-1",
+    "href": "index.html#deskriptive-statistik-i-1",
+    "title": "Social Media Data in R?",
+    "section": "Deskriptive Statistik I",
+    "text": "Deskriptive Statistik I"
+  },
+  {
+    "objectID": "index.html#deskriptive-statistik-ii-aktivitätsmuster-i",
+    "href": "index.html#deskriptive-statistik-ii-aktivitätsmuster-i",
+    "title": "Social Media Data in R?",
+    "section": "Deskriptive Statistik II (Aktivitätsmuster I)",
+    "text": "Deskriptive Statistik II (Aktivitätsmuster I)\n\nactors &lt;- c(\"abumikail1\", \"adnanomar56\", \"ezwr1\", \"hasanatsammler\", \n            \"imauftragdesislam\", \"musliminteraktiv\", \"loveallah.de\", \"hidayaelisa\")\np_2 &lt;- muztok_df %&gt;%\n  filter(user.y %in% actors) %&gt;%\n  ggplot(., aes(x = date, y = log(views), color = user.y)) +\n  geom_line() +\n  geom_point(alpha = 0.4) +\n  theme_minimal() +\n  theme(legend.position = \"none\", axis.text.x = element_text(angle = 45, hjust = 1)) +\n  labs(x = \"Zeitraum\", y = \"Log(Views)\") +\n  facet_wrap(vars(user.y))"
+  },
+  {
+    "objectID": "index.html#deskriptive-statistik-ii-aktivitätsmuster-i-1",
+    "href": "index.html#deskriptive-statistik-ii-aktivitätsmuster-i-1",
+    "title": "Social Media Data in R?",
+    "section": "Deskriptive Statistik II (Aktivitätsmuster I)",
+    "text": "Deskriptive Statistik II (Aktivitätsmuster I)"
+  },
+  {
+    "objectID": "index.html#deskriptive-statistik-ii-aktivitätsmuster-ii",
+    "href": "index.html#deskriptive-statistik-ii-aktivitätsmuster-ii",
+    "title": "Social Media Data in R?",
+    "section": "Deskriptive Statistik II (Aktivitätsmuster II)",
+    "text": "Deskriptive Statistik II (Aktivitätsmuster II)"
+  },
+  {
+    "objectID": "index.html#textanalyse",
+    "href": "index.html#textanalyse",
+    "title": "Social Media Data in R?",
+    "section": "Textanalyse",
+    "text": "Textanalyse"
+  },
+  {
+    "objectID": "index.html#beispiel-2---twitter-daten",
+    "href": "index.html#beispiel-2---twitter-daten",
+    "title": "Social Media Data in R?",
+    "section": "Beispiel 2 - Twitter Daten",
+    "text": "Beispiel 2 - Twitter Daten\n\n\n\n\n\n\n\n\n\n\nOrganization\nTwitter handle\nRetrieved tweets\nPeriod\n\n\n\n\nGeneration Islam\n@genislam1\n3132\n22/07/2019 - 19/04/2022\n\n\nZentralrat der Muslime in Deutschland\n@der_zmd\n1534\n16/05/2016 - 22/04/2022\n\n\nBundesverband der “Türkisch-Islamischen Union der Anstalt für Religion”\n@DITIBkoln\n978\n28/02/2012 - 27/04/2022\n\n\nJugendorganisation der “Islamischen Gemeinschaft Millî Görüş”\n@igmggenclik\n3200\n24/09/2016 - 27/04/2022\n\n\nIslamrat für die Bundesrepublik Deutschland\n@Islamratbrd\n1246\n27/09/2013 - 27/04/2022\n\n\nAlhambra-Gesellschaft\n@Alhambra_eV\n1335\n26/10/2017 - 27/04/2022\n\n\n\n\nCode findet ihr unter: https://nader-hotait.github.io/posts/2022/05/blog-post-1/"
+  },
+  {
+    "objectID": "index.html#pre-processing",
+    "href": "index.html#pre-processing",
+    "title": "Social Media Data in R?",
+    "section": "Pre-Processing",
+    "text": "Pre-Processing"
+  },
+  {
+    "objectID": "index.html#unknown-categories-i---co-occurances",
+    "href": "index.html#unknown-categories-i---co-occurances",
+    "title": "Social Media Data in R?",
+    "section": "Unknown Categories I - Co-Occurances",
+    "text": "Unknown Categories I - Co-Occurances"
+  },
+  {
+    "objectID": "index.html#unknown-categories-i---co-occurances-1",
+    "href": "index.html#unknown-categories-i---co-occurances-1",
+    "title": "Social Media Data in R?",
+    "section": "Unknown Categories I - Co-Occurances",
+    "text": "Unknown Categories I - Co-Occurances"
+  },
+  {
+    "objectID": "index.html#unknown-categories-i---topic-modelling",
+    "href": "index.html#unknown-categories-i---topic-modelling",
+    "title": "Social Media Data in R?",
+    "section": "Unknown Categories I - Topic Modelling",
+    "text": "Unknown Categories I - Topic Modelling\n\n\n\n\n\n\n\n\n\nTopic #\nTopic Proportions\nTop Words\n\n\n\n\n1\n9%\nget, know, face, need, boy, demolish, call, offic, border, around\n\n\n2\n15%\nbomb, crime, call, terrorist, strike, dead, tortur, night, want, stop\n\n\n3\n20%\ndeutsch, macht, regierung, millionen, viel, kommt, weiß, wert, sieht, ihrem\n\n\n4\n16%\neuropa, frankreich, kopftuch, eltern, flüchtling, neue, problem, islamfeindlichkeit, kampf, cdu\n\n\n5\n6%\nuse, support, uyghur, famili, target, brother, live, pleas, accus, stand\n\n\n6\n7%\nprison, part, account, islam, state, news, ban, claim, leader, victim\n\n\n7\n5%\nartikel, tage, westlich, extremist, generat, ahmad, ersten, kurz, youtub, rechten\n\n\n8\n7%\ndestroy, watch, arrest, girl, attack, camp, group, right, show, human\n\n\n9\n5%\nbrutal, protest, villag, murder, imam, intern, muhammad, isra, religion, assault\n\n\n10\n9%\npalästina, nazi, palästinens, nachdem, zionistisch, weiter, wohl, geschicht, zionistischen, gewalt"
+  },
+  {
+    "objectID": "index.html#known-categories-i---naive-bayes",
+    "href": "index.html#known-categories-i---naive-bayes",
+    "title": "Social Media Data in R?",
+    "section": "Known Categories I - Naive Bayes",
+    "text": "Known Categories I - Naive Bayes"
+  },
+  {
+    "objectID": "index.html#known-categories-i---naive-bayes-1",
+    "href": "index.html#known-categories-i---naive-bayes-1",
+    "title": "Social Media Data in R?",
+    "section": "Known Categories I - Naive Bayes",
+    "text": "Known Categories I - Naive Bayes"
+  },
+  {
+    "objectID": "index.html#keyness",
+    "href": "index.html#keyness",
+    "title": "Social Media Data in R?",
+    "section": "Keyness",
+    "text": "Keyness"
+  },
+  {
+    "objectID": "index.html#known-categories-ii---glmnet",
+    "href": "index.html#known-categories-ii---glmnet",
+    "title": "Social Media Data in R?",
+    "section": "Known Categories II - Glmnet",
+    "text": "Known Categories II - Glmnet"
+  },
+  {
+    "objectID": "index.html#weitere-möglichkeiten",
+    "href": "index.html#weitere-möglichkeiten",
+    "title": "Social Media Data in R?",
+    "section": "Weitere Möglichkeiten",
+    "text": "Weitere Möglichkeiten\n\nIn R:\n\nSentiment Analysis\nImplementierung von OpenAI funktionen (openai)\nLatent Semantic Analysis (LSA)\nLexical dispersion\nWordfish\n\nAußerhalb:\n\nGPT Modelle\nBERD Modelle\n…\n\nNutzung von Dokumentvariablen\n\nAkteur und Term Use\nThemen und Sentiments über Zeit"
+  },
+  {
+    "objectID": "index.html#wie-nutze-ich-das-in-meiner-forschung",
+    "href": "index.html#wie-nutze-ich-das-in-meiner-forschung",
+    "title": "Social Media Data in R?",
+    "section": "Wie nutze ich das in meiner Forschung?",
+    "text": "Wie nutze ich das in meiner Forschung?\n\nSampling von Akteuren und Videos\nExplorative Studien\nOnline Studien\nDeskriptive Forschung\nKausale Fragestellungen\nMixed Methods"
+  },
+  {
+    "objectID": "index.html#beispiel-german-female-muslim-content-creators",
+    "href": "index.html#beispiel-german-female-muslim-content-creators",
+    "title": "Social Media Data in R?",
+    "section": "Beispiel: German Female Muslim Content Creators",
+    "text": "Beispiel: German Female Muslim Content Creators\n\n\n\n\n\n\n\n\n\n\n\n\nData\nVideos\nStart\nStop\nViews (±95% CI)\nLikes (±95% CI)\nComments (±95% CI)\n\n\n\n\nAll\n8936\n’19-09-28\n’23-12-23\n173,716 (±17.1K)\n15,161 (±1,489)\n202 (±23)\n\n\nSample\n320\n’20-03-11\n’23-12-21\n147,061 (±35.7K)\n18,123 (±4,860)\n173 (±69)"
+  },
+  {
+    "objectID": "index.html#beispiel",
+    "href": "index.html#beispiel",
+    "title": "Social Media Data in R?",
+    "section": "Beispiel",
+    "text": "Beispiel\n\n\n\n\n\n\n\n\n\n\n\n\nMain Topic\nn\nVideo Format\nn\nContent Type\nn\n\n\n\n\nPersonal and Social Life\n103\nMusic\n186\nPresentation\n54\n\n\nBeauty, Style, and Fashion\n70\nAudio Templates\n32\nComedy\n49\n\n\nReligious and Theological Topics and Knowledge\n63\nReply (Comment)\n26\nDiashow\n44\n\n\nPromotion, Tips, Commerce, Inspiration\n62\nImage Blending\n13\nVlog Formats/Impressions\n43\n\n\nSocial Justice and Political Advocacy\n50\nStitches\n13\nText-Commented Video\n29\n\n\nCultural-Religious Identity and Life\n42\nGreen Screening\n10\nStorytelling\n28\n\n\nHijab and Life as a Hijabi\n39\nFilters\n5\nDialogue/Acting\n25\n\n\nSelf(re-)presentation\n14\nSlideshow\n2\nSingalong\n18\n\n\nMISC\n11\n\n\nDance/Choreography\n17\n\n\n\n\n\n\nTutorial\n14\n\n\n\n\n\n\nSpeakalong\n8\n\n\n\n\n\n\nCooking Show\n4\n\n\n\n\n\n\nChallenge\n3\n\n\n\n\n\n\nPoetry Slam\n2\n\n\n\n\n\n\nSinging\n2\n\n\n\n\n\n\nInterview\n1"
+  },
+  {
+    "objectID": "index.html#beispiel-1",
+    "href": "index.html#beispiel-1",
+    "title": "Social Media Data in R?",
+    "section": "Beispiel",
+    "text": "Beispiel"
+  },
+  {
+    "objectID": "index.html#vielen-dank",
+    "href": "index.html#vielen-dank",
+    "title": "Social Media Data in R?",
+    "section": "Vielen Dank!",
+    "text": "Vielen Dank!"
   },
   {
     "objectID": "about.html",
