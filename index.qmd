@@ -1,11 +1,435 @@
 ---
-title: "pres_smd"
+title: "Social Media Data in R?"
+author: "Nader Hotait"
+date: "02 August, 2024"
+lang: de
+date-format: "long"
+format:
+  revealjs: 
+    theme: white
+    logo: hu_siegel-kombi_rgb.png
+    css: logo.css
+    mbed-resources: true
+    slide-level: 3
+    slide-number: true
+    show-slide-number: all
+    preview-links: auto
+    number-sections: false
+    scrollable: true
+    chalkboard: true
+include-in-header: 
+  text: |
+    <style>
+      .custom-small table {
+        font-size: .5em
+      }
+    </style>
 ---
 
-This is a Quarto website.
+## Inhalt
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
++ Wie kommen wir an Daten? 
++ Welche Daten kriegen wir?
++ Was können wir mit den Daten so machen?
+
+. . . 
+
+Fokus auf TikTok!
+
+## Wie kommen wir an Daten?
+
+![](helper_figs/computer.jpeg)
+
+## Datenzugänge
+
+::: custom-small
+
+|                     | Website     | Code                        | Datenbank               |
+|---------------------|-------------|-----------------------------|-------------------------|
+| Zugriff             | Manuell     | Automatisiert (Webscraping) | Automatisiert (Abfrage) |
+| Verfügbare Daten    | Ausreichend | Ausreichend                 | Erweitert               |
+| Datenqualität       | Hoch        | Mittel bis Hoch             | Hoch                    |
+| Schwierigkeit       | Einfach     | Medium                      | Einfach bis Schwer      |
+| Datenvolumen        | Niedrig     | Groß                        | Groß                    |
+| Nutzbar für euch?   | Ja          | Ja                          | Nein                    |
+
+: Quellen und ihre Zugänglichkeit
+
+:::
+
+. . . 
+
+Ausnahme: Nutzungsdaten!
+
+## Welche Informationen auf Sozialen Medien? {.smaller}
+
+::: {.incremental}
+- URLs
+- Handles
+- Likes
+- Views
+- Comments
+- Shares
+- Duration
+- Description, Hashtags, Tags
+- Sound
+- Date
+:::
+
+## Welche Informationen auf Sozialen Medien? {.smaller}
+
+- URLs: Quelle, Referenzierbarkeit
+- Handles: Adressat, Referenzierbarkeit
+- Likes: Popularität
+- Views: Popularität, Sichtbarkeit
+- Comments: Interaktionen, Popularität
+- Shares: Popularität, Weitergabe
+- Duration: Inhalt-Dauer Zusammenhang
+- Description, Hashtags, Tags: Inhalt, Beschreibung, Diskurse, Netzwerke
+- Sound: Diskurse, Künstlerische Untermauerung
+- Date: Zeitlicher Kontext
+
+
+## <a href=https://www.tiktok.com/@realdonaldtrump><span>Beispiel: Donald Trump on TikTok</a>
+
+
+## Wie kriegen wir die Daten jetzt?
+
+::: {.incremental}
+- Entwicklung von Webscraper über R oder Python mit Selenium
+  + Zeitaufwending
+  + Wenig Referenzprojekte vorhadnen
+- Webscraping mit Dienstleister
+  + Weniger Flexibilität
+  + Meist Kosten
+  + Aber: Einfacher für euch!
+:::
+
+## <a href=https://www.octoparse.com><span>Webscraping mit Dienstleister</a>
+
+## Unser Datensatz
 
 ```{r}
-1 + 1
+#| output: false
+#| echo: true
+pacman::p_load(tidyverse, readxl, scales, plotly)
+trump_posts <- read_excel("trump_posts.xlsx")
+trump_page <- read_excel("trump_page.xlsx")
+
+trump_df <- trump_posts %>%
+  left_join(trump_page, by = "Page_URL")
 ```
+
+## Unser Datensatz
+
+```{r}
+#| output: true
+#| echo: false
+
+head(trump_df[,c(1,3:5)])
+head(trump_df[,c(12,14,16:20)])
+```
+
+## <a href=https://support.tiktok.com/de/account-and-privacy/personalized-ads-and-data/requesting-your-data><span>Nutzungsdaten auf TikTok</a>
+
+## Verarbeitung von Nutzungsdaten
+
+```{r}
+#| echo: true
+pacman::p_load(jsonlite, purrr, lubridate)
+user_data <- fromJSON("user_data.json")
+
+glimpse(user_data)
+```
+
+## Verarbeitung von Nutzungsdaten
+
+```{r}
+#| echo: true
+video_list <- user_data[["Activity"]][["Video Browsing History"]][["VideoList"]]
+video_list$Date <- ymd_hms(video_list$Date)
+
+head(video_list)
+```
+
+## Was kann ich mit den Daten so machen? {.smaller}
+
++ Quantitative Analyse:
+  + Deskriptive Statistik (Uni- und Multivariat)
+  + Harmonisierung mit externen Datenquellen
+  + Quantitative Textanalyse (Natural Language Processing)
+  + Machinelles Lernen, Big Data Analysen usw.
++ Qualitative Analyse
+  + Transkription Audio-Visueller Inhalte
+  + Kodierung und Interpretation der Inhalte
++ Mixed-Methods
+  + Quantifizierung von Kodierungen
+  + Gegenüberstellung verschiedener Daten (Kodierungen, Likes, Views, usw.)
+  
+
+## Beispiel 1 (MuzTok)
+
+|     Gender     |     Accounts    |     Videos    |     Avg.Videos    |     Avg.Views    |     Avg.Likes    |
+|----------------|-----------------|---------------|-------------------|------------------|------------------|
+|     All        |     43          |     2983      |     69            |     11.3M        |     962.9K       |
+|     couple     |     2           |     131       |     66            |     107.5M       |     6.7M         |
+|     female     |     6           |     406       |     68            |     7.3M         |     645.6K       |
+|     male       |     33          |     2345      |     71            |     6.6M         |     677.1K       |
+|     unknown    |     2           |     101       |     50            |     5.4M         |     907.9K       |
+
+: German Muslim Influencers (2022)
+
+## Deskriptive Statistik I 
+
+```{r}
+#| output: false
+#| echo: true
+
+muztok_df <- read_excel("muztok_df.xlsx")
+
+p_1 <- muztok_df %>%
+  mutate(
+    point_color = ifelse(duration_sec < 60, "violet", "lightblue")
+  ) %>%
+  ggplot(aes(x = duration_sec, y = views)) +
+  geom_point(aes(color = point_color), alpha = 0.6) +
+  scale_color_manual(
+    values = c("violet" = "violet", "lightblue" = "lightblue"),
+    labels = c(">= 60 seconds", "< 60 seconds")) +
+  scale_y_continuous(labels = label_comma()) +
+  theme_minimal() +
+  labs(color = "Video Length", x = "Duration (seconds)", y = "Views")
+```
+
+## Deskriptive Statistik I
+
+```{r}
+#| output: true
+#| echo: false
+
+p_1
+```
+
+
+
+## Deskriptive Statistik II (Aktivitätsmuster I)
+
+```{r}
+#| output: false
+#| echo: true
+actors <- c("abumikail1", "adnanomar56", "ezwr1", "hasanatsammler", 
+            "imauftragdesislam", "musliminteraktiv", "loveallah.de", "hidayaelisa")
+p_2 <- muztok_df %>%
+  filter(user.y %in% actors) %>%
+  ggplot(., aes(x = date, y = log(views), color = user.y)) +
+  geom_line() +
+  geom_point(alpha = 0.4) +
+  theme_minimal() +
+  theme(legend.position = "none", axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Zeitraum", y = "Log(Views)") +
+  facet_wrap(vars(user.y))
+```
+## Deskriptive Statistik II (Aktivitätsmuster I)
+
+```{r}
+#| output: true
+#| echo: false
+
+p_2
+```
+
+
+## Deskriptive Statistik II (Aktivitätsmuster II)
+
+```{r}
+mus_df <- read_excel("mus_data.xlsx")
+
+mus_df$video_length <- format(mus_df$video_length , format="%H:%M:%S")
+mus_df$video_length <- hms(mus_df$video_length)
+mus_df$video_length <- as.duration(mus_df$video_length)
+
+ts_g <- ggplot(mus_df, aes(x = video_date, y = video_likes, text= paste('Datum: ', video_date,
+                                                                        '<br>Likes: ', video_likes,
+                                                                        '<br>Länge: ', video_length))) +
+  geom_point(aes(size = video_length), alpha = 1/2) +
+  scale_size(range = c(0, 12)) +
+  ylab("Likes") +
+  xlab("Datum") +
+  geom_vline(xintercept = as.numeric(as.POSIXct(as.Date("2021-9-4"))), 
+             color = "aquamarine3", 
+             lwd = 0.5, linetype=2)  +
+  annotate("text", x = as.POSIXct(as.Date("2021-9-4")), y = 40000, size = 2, label = "Ann. 11.09.") +
+  geom_vline(xintercept = as.numeric(as.POSIXct(as.Date("2021-7-1"))), 
+             color = "aquamarine3", 
+             lwd = 0.5, linetype=2)  +
+  annotate("text", x = as.POSIXct(as.Date("2021-7-1")), y = 40000, size = 2, label = "Ann. Marwa El-Sherbini") +
+  geom_vline(xintercept = as.numeric(as.POSIXct(as.Date("2021-3-10"))), 
+             color = "aquamarine3", 
+             lwd = 0.5, linetype=2)  +
+  annotate("text", x = as.POSIXct(as.Date("2021-3-10")), y = 40000, size = 2, label = "Ann. Christchurch") +
+  geom_vline(xintercept = as.numeric(as.POSIXct(as.Date("2021-3-27"))), 
+             color = "aquamarine3", 
+             lwd = 0.5, linetype=2)  +
+  annotate("text", x = as.POSIXct(as.Date("2021-3-27")), y = 30000, size = 2, label = "Rassismus Polizei") +
+  geom_vline(xintercept = as.numeric(as.POSIXct(as.Date("2021-5-23"))), 
+             color = "aquamarine3", 
+             lwd = 0.5, linetype=2)  +
+  annotate("text", x = as.POSIXct(as.Date("2021-5-23")), y = 30000, size = 2, label = "C.Özdemir Araber Zitat") +
+  geom_vline(xintercept = as.numeric(as.POSIXct(as.Date("2021-5-7"))), 
+             color = "aquamarine3", 
+             lwd = 0.5, linetype=2)  +
+  annotate("text", x = as.POSIXct(as.Date("2021-5-7")), y = 40000, size = 2, label = "Bundesratbeschl. Kopftuch\nAl-Aqsa") +
+  geom_vline(xintercept = as.numeric(as.POSIXct(as.Date("2021-7-28"))), 
+             color = "aquamarine3", 
+             lwd = 0.5, linetype=2)  +
+  annotate("text", x = as.POSIXct(as.Date("2021-7-28")), y = 30000, size = 2, label = "S.Kurz Bild Interview") +
+  geom_vline(xintercept = as.numeric(as.POSIXct(as.Date("2021-2-17"))), 
+             color = "aquamarine3", 
+             lwd = 0.5, linetype=2)  +
+  annotate("text", x = as.POSIXct(as.Date("2021-2-17")), y = 30000, size = 2, label = "Ann. Hanau") +
+  geom_vline(xintercept = as.numeric(as.POSIXct(as.Date("2021-10-22"))), 
+             color = "aquamarine3", 
+             lwd = 0.5, linetype=2)  +
+  annotate("text", x = as.POSIXct(as.Date("2021-10-22")), y = 30000, size = 2, label = "Bild Adhan") +
+  guides(size=guide_legend(title="Video Length")) +
+  theme_light()
+
+ts_g <- ggplotly(ts_g, tooltip = "text")
+
+ts_g <- ts_g %>%
+  layout(hovermode = "x unified")
+
+ts_g
+```
+
+## Textanalyse
+
+![](helper_figs/grimmer_2013.png){width=80%}
+
+## Beispiel 2 - Twitter Daten {.smaller}
+
+
+::: custom-small
+
+| Organization                                                        | Twitter handle | Retrieved tweets | Period                  |
+|---------------------------------------------------------------------|----------------|------------------|-------------------------|
+| Generation Islam                                                    | @genislam1     | 3132             | 22/07/2019 - 19/04/2022 |
+| Zentralrat der Muslime in Deutschland                              | @der_zmd       | 1534             | 16/05/2016 - 22/04/2022 |
+| Bundesverband der "Türkisch-Islamischen Union der Anstalt für Religion" | @DITIBkoln      | 978              | 28/02/2012 - 27/04/2022 |
+| Jugendorganisation der "Islamischen Gemeinschaft Millî Görüş"   | @igmggenclik    | 3200             | 24/09/2016 - 27/04/2022 |
+| Islamrat für die Bundesrepublik Deutschland                         | @Islamratbrd    | 1246             | 27/09/2013 - 27/04/2022 |
+| Alhambra-Gesellschaft                                               | @Alhambra_eV    | 1335             | 26/10/2017 - 27/04/2022 |
+
+:::
+
+Code findet ihr unter: <a href=https://nader-hotait.github.io/posts/2022/05/blog-post-1/><span>https://nader-hotait.github.io/posts/2022/05/blog-post-1/</a>
+
+## Pre-Processing
+
+![](helper_figs/preprocessing-1.png){width=80%}
+
+## Unknown Categories I - Co-Occurances
+
+![](helper_figs/feature_co_occur/feature_co_occur-1.png){width=70%}
+
+## Unknown Categories I - Co-Occurances
+
+![](helper_figs/wc-2/wc-2-1.png){width=70%}
+
+## Unknown Categories I - Topic Modelling
+
+::: custom-small
+
+| Topic # | Topic Proportions | Top Words                                                                         |
+|----------|-------------------|-----------------------------------------------------------------------------------|
+| 1        | 9%                | get, know, face, need, boy, demolish, call, offic, border, around                 |
+| 2        | 15%               | bomb, crime, call, terrorist, strike, dead, tortur, night, want, stop             |
+| 3        | 20%               | deutsch, macht, regierung, millionen, viel, kommt, weiß, wert, sieht, ihrem       |
+| 4        | 16%               | europa, frankreich, kopftuch, eltern, flüchtling, neue, problem, islamfeindlichkeit, kampf, cdu    |
+| 5        | 6%                | use, support, uyghur, famili, target, brother, live, pleas, accus, stand          |
+| 6        | 7%                | prison, part, account, islam, state, news, ban, claim, leader, victim             |
+| 7        | 5%                | artikel, tage, westlich, extremist, generat, ahmad, ersten, kurz, youtub, rechten |
+| 8        | 7%                | destroy, watch, arrest, girl, attack, camp, group, right, show, human             |
+| 9        | 5%                | brutal, protest, villag, murder, imam, intern, muhammad, isra, religion, assault  |
+| 10       | 9%                | palästina, nazi, palästinens, nachdem, zionistisch, weiter, wohl, geschicht, zionistischen, gewalt |
+
+:::
+
+## Known Categories I - Naive Bayes
+
+![](helper_figs/naive_bayes/naive_bayes-1.png){width=80%}
+
+## Known Categories I - Naive Bayes
+
+![](helper_figs/nb_coef/nb_coef-1.png){width=80%}
+
+## Keyness
+
+![](helper_figs/keyness/keyness-1.png){width=80%}
+
+## Known Categories II - Glmnet
+
+![](helper_figs/caret_stack/caret_stack-1.png){width=80%}
+
+
+## Weitere Möglichkeiten {.smaller}
+
++ In R:
+  + Sentiment Analysis
+  + Implementierung von OpenAI funktionen (openai)
+  + Latent Semantic Analysis (LSA)
+  + Lexical dispersion
+  + Wordfish
++ Außerhalb:
+  + GPT Modelle
+  + BERD Modelle
+  + ...
++ Nutzung von Dokumentvariablen
+  + Akteur und Term Use
+  + Themen und Sentiments über Zeit
+  
+## Wie nutze ich das in meiner Forschung?
+
++ Sampling von Akteuren und Videos
++ Explorative Studien
++ Online Studien
++ Deskriptive Forschung
++ Kausale Fragestellungen
++ Mixed Methods
+
+## Beispiel: German Female Muslim Content Creators {.smaller}
+
+| Data   | Videos | Start    | Stop     | Views (±95% CI)   | Likes (±95% CI)   | Comments (±95% CI) |
+|--------|--------|----------|----------|-------------------|-------------------|--------------------|
+| All    | 8936   | '19-09-28 | '23-12-23 | 173,716 (±17.1K)  | 15,161 (±1,489)   | 202 (±23)          |
+| Sample | 320    | '20-03-11 | '23-12-21 | 147,061 (±35.7K)  | 18,123 (±4,860)   | 173 (±69)          |
+
+##  Beispiel
+
+::: custom-small
+| Main Topic                                     | n   | Video Format    | n   | Content Type             | n  |
+|------------------------------------------------|-----|-----------------|-----|--------------------------|----|
+| Personal and Social Life                       | 103 | Music           | 186 | Presentation             | 54 |
+| Beauty, Style, and Fashion                     | 70  | Audio Templates | 32  | Comedy                   | 49 |
+| Religious and Theological Topics and Knowledge | 63  | Reply (Comment) | 26  | Diashow                  | 44 |
+| Promotion, Tips, Commerce, Inspiration         | 62  | Image Blending  | 13  | Vlog Formats/Impressions | 43 |
+| Social Justice and Political Advocacy          | 50  | Stitches        | 13  | Text-Commented Video     | 29 |
+| Cultural-Religious Identity and Life           | 42  | Green Screening | 10  | Storytelling             | 28 |
+| Hijab and Life as a Hijabi                     | 39  | Filters         | 5   | Dialogue/Acting          | 25 |
+| Self(re-)presentation                          | 14  | Slideshow       | 2   | Singalong                | 18 |
+| MISC                                           | 11  |                 |     | Dance/Choreography       | 17 |
+|                                                |     |                 |     | Tutorial                 | 14 |
+|                                                |     |                 |     | Speakalong               | 8  |
+|                                                |     |                 |     | Cooking Show             | 4  |
+|                                                |     |                 |     | Challenge                | 3  |
+|                                                |     |                 |     | Poetry Slam              | 2  |
+|                                                |     |                 |     | Singing                  | 2  |
+|                                                |     |                 |     | Interview                | 1  |
+
+:::
+## Beispiel
+
+![](helper_figs/pca-1.png)
+
+
+## Vielen Dank!
