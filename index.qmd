@@ -112,7 +112,10 @@ Ausnahme: Nutzungsdaten!
 ```{r}
 #| output: false
 #| echo: true
-pacman::p_load(tidyverse, readxl, scales, plotly)
+library(tidyverse)
+library(readxl)
+library(scales)
+library(plotly)
 trump_posts <- read_excel("trump_posts.xlsx")
 trump_page <- read_excel("trump_page.xlsx")
 
@@ -136,7 +139,9 @@ head(trump_df[,c(12,14,16:20)])
 
 ```{r}
 #| echo: true
-pacman::p_load(jsonlite, purrr, lubridate)
+library(jsonlite)
+library(purrr)
+library(lubridate)
 user_data <- fromJSON("user_data.json")
 
 glimpse(user_data)
